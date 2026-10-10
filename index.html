@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>APPS 2026 · Formula UFMG</title>
+  <meta name="description" content="Pedal do acelerador do Car #05: modelos interativos dos sensores Hall e potenciômetro linear, apresentação e documentação.">
+  <link rel="icon" type="image/png" href="assets/img/favicon.png">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="topo-in">
+      <a href="#" class="marca" aria-label="Início">
+        <img src="assets/img/logo-formula-ufmg.png" alt="Formula UFMG" width="150" height="60">
+      </a>
+      <div class="titulo">
+        <h1>APPS 2026</h1>
+        <p>Pedal do acelerador · Eletrônica · Car #05</p>
+      </div>
+    </div>
+  </header>
+
+  <nav class="menu" aria-label="Seções">
+    <div class="menu-in">
+      <a href="#hall" data-rota="hall">Pedal Hall</a>
+      <a href="#potenciometro" data-rota="potenciometro">Pedal potenciômetro</a>
+      <a href="#slides" data-rota="slides">Apresentação</a>
+      <a href="#pdf" data-rota="pdf">Documento PDF</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- INÍCIO -->
+    <section id="sec-inicio" class="secao">
+      <p class="lead">Duas arquiteturas candidatas para o sensor do pedal do acelerador. Escolha uma opção:</p>
+      <div class="cards">
+        <a class="card" href="#hall">
+          <span class="tag tag-azul">Pedal</span>
+          <h2>Sensor Hall</h2>
+          <p>Sensores fixos nos garfos lendo um ímã que gira com o eixo.</p>
+        </a>
+        <a class="card" href="#potenciometro">
+          <span class="tag tag-vermelho">Pedal</span>
+          <h2>Potenciômetro linear</h2>
+          <p>Dois KPM12J funcionando como bielas, um de cada lado.</p>
+        </a>
+        <a class="card" href="#slides">
+          <span class="tag">Slides</span>
+          <h2>Apresentação</h2>
+          <p>Arquitetura, regulamento FSAE 2027 e revisão de falhas.</p>
+        </a>
+        <a class="card" href="#pdf">
+          <span class="tag">PDF</span>
+          <h2>Documento</h2>
+          <p>Documentação complementar do projeto.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- PEDAL HALL -->
+    <section id="sec-hall" class="secao" hidden>
+      <div class="cab">
+        <h2>Pedal com sensor Hall</h2>
+        <a class="botao-sec" href="pedais/pedal-hall.html" target="_blank" rel="noopener">Abrir em tela cheia ↗</a>
+      </div>
+      <div class="moldura" data-src="pedais/pedal-hall.html" data-titulo="Pedal interativo com sensor Hall"></div>
+      <div class="texto">
+        <p class="lead">Dois sensores Hall fixos, um em cada garfo do pivô, leem o ângulo de um ímã que gira com o eixo do pedal.</p>
+        <ul>
+          <li><b>Sem bielas.</b> O eixo é travado no braço por um pino e gira em buchas. Cada ponta do eixo leva um ímã diametral, e o CI Hall fica parado na frente dele, a cerca de 1,5 mm.</li>
+          <li><b>Lê o ângulo do campo.</b> O CI mede a direção do campo do ímã. Não há contato, então não há desgaste.</li>
+          <li><b>Giro espelhado.</b> Cada sensor olha de um lado: um vê o ímã girar no sentido horário e o outro no anti-horário. Por isso o sentido de leitura (DIR) é programado diferente em cada CI.</li>
+          <li><b>Sinais diferentes por programação.</b> O zero e a faixa de cada CI são programados para dar inclinação e offset diferentes, como pede a regra T.4.2.3.</li>
+          <li><b>Ponto de atenção.</b> Com 20° de curso, cada 1° de folga do ímã vira 5 pontos percentuais de diferença entre os sensores. O ímã precisa estar travado no eixo.</li>
+        </ul>
+        <p class="nota">No modelo: arraste para girar, use o controle de curso e os botões de vista dos sensores, e simule falhas no painel. Os valores de tensão são ilustrativos; as funções de transferência revisadas estão na apresentação.</p>
+      </div>
+    </section>
+
+    <!-- PEDAL POTENCIÔMETRO -->
+    <section id="sec-potenciometro" class="secao" hidden>
+      <div class="cab">
+        <h2>Pedal com potenciômetro linear (KPM12J)</h2>
+        <a class="botao-sec" href="pedais/pedal-potenciometro.html" target="_blank" rel="noopener">Abrir em tela cheia ↗</a>
+      </div>
+      <div class="moldura" data-src="pedais/pedal-potenciometro.html" data-titulo="Pedal interativo com potenciômetro linear"></div>
+      <div class="texto">
+        <p class="lead">Dois potenciômetros lineares KPM12J, um de cada lado, funcionam como bielas entre o braço do pedal e a base.</p>
+        <ul>
+          <li><b>Sensor como biela.</b> Uma ponta fica presa no braço e a outra num garfo fixo na base. Quando o pedal gira, a distância entre as rótulas muda e o cursor do sensor se desloca.</li>
+          <li><b>Quase linear.</b> Com a biela perpendicular ao braço no meio do curso, o curso no sensor é ≈ 2·r·sen(Δθ/2), e o erro em relação ao ângulo fica em torno de 0,1%.</li>
+          <li><b>Sinais diferentes pela geometria.</b> Cada sensor é preso a um raio diferente do pivô, então cada um tem uma inclinação própria.</li>
+          <li><b>Rótulas nas duas pontas.</b> O sensor só trabalha na direção axial, sem carga lateral. Batentes e molas ficam no pedal, nunca no sensor.</li>
+        </ul>
+        <p class="nota">No modelo: arraste para girar, use o controle de curso ou a animação e acompanhe as tensões no painel. Os valores de tensão são ilustrativos; as funções de transferência revisadas estão na apresentação.</p>
+      </div>
+    </section>
+
+    <!-- APRESENTAÇÃO -->
+    <section id="sec-slides" class="secao" hidden>
+      <div class="cab">
+        <h2>Apresentação</h2>
+        <a class="botao" href="slides/APPS_2026_arquitetura_sensores.pptx" download>Baixar .pptx</a>
+      </div>
+      <p class="lead">Arquitetura dos sensores, regulamento FSAE 2027 e revisão de falhas.</p>
+      <div class="visor">
+        <img id="slide-img" src="slides/slide-01.jpg" alt="Slide 1 de 13" width="1920" height="1080">
+        <button class="seta seta-esq" id="ant" aria-label="Slide anterior">‹</button>
+        <button class="seta seta-dir" id="prox" aria-label="Próximo slide">›</button>
+      </div>
+      <p class="contador" id="contador">1 / 13</p>
+      <div class="miniaturas" id="miniaturas" aria-label="Miniaturas dos slides"></div>
+    </section>
+
+    <!-- PDF -->
+    <section id="sec-pdf" class="secao" hidden>
+      <div class="cab">
+        <h2>Documento PDF</h2>
+        <div class="acoes-pdf" id="acoes-pdf" hidden>
+          <a class="botao-sec" href="pdf/documento.pdf" target="_blank" rel="noopener">Abrir ↗</a>
+          <a class="botao" href="pdf/documento.pdf" download>Baixar PDF</a>
+        </div>
+      </div>
+      <div id="pdf-area"></div>
+      <div class="vazio" id="pdf-vazio" hidden>
+        <h3>PDF ainda não adicionado</h3>
+        <p>Coloque o arquivo em <code>pdf/documento.pdf</code> e faça o commit. Esta seção passa a mostrar o documento automaticamente.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="rodape">
+    <p>Formula UFMG · Eletrônica · Car #05 · 2026</p>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

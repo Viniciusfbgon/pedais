@@ -1,0 +1,162 @@
+:root {
+  --navy: #08093A;
+  --azul: #0000FE;
+  --vermelho: #D0313A;
+  --fundo: #F4F5FA;
+  --cartao: #FFFFFF;
+  --texto: #1B1D3A;
+  --suave: #5A5D7A;
+  --linha: #DDE0EC;
+  --raio: 12px;
+}
+
+* { box-sizing: border-box; }
+
+html, body { margin: 0; }
+body { overflow-x: hidden; }
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* ---------- topo ---------- */
+.topo { background: var(--navy); color: #fff; }
+.topo-in {
+  max-width: 1200px; margin: 0 auto; padding: 18px 24px;
+  display: flex; align-items: center; gap: 22px;
+}
+.marca img { display: block; height: 56px; width: auto; }
+.titulo h1 { margin: 0; font-size: 24px; letter-spacing: .01em; }
+.titulo p { margin: 2px 0 0; color: #B9BCD8; font-size: 14px; }
+
+/* ---------- menu ---------- */
+.menu {
+  position: sticky; top: 0; z-index: 10;
+  background: #fff; border-bottom: 1px solid var(--linha);
+}
+.menu-in {
+  max-width: 1200px; margin: 0 auto; padding: 10px 24px;
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.menu a {
+  text-decoration: none; color: var(--navy); font-weight: 600; font-size: 15px;
+  padding: 9px 16px; border-radius: 999px; border: 1px solid var(--linha); background: #fff;
+}
+.menu a:hover { border-color: var(--azul); color: var(--azul); }
+.menu a.ativo { background: var(--azul); border-color: var(--azul); color: #fff; }
+
+/* ---------- conteúdo ---------- */
+main { max-width: 1200px; margin: 0 auto; padding: 28px 24px 40px; }
+.secao[hidden] { display: none; }
+
+.lead { font-size: 18px; color: var(--texto); margin: 0 0 18px; }
+
+.cab {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap; margin-bottom: 14px;
+}
+.cab h2 { margin: 0; font-size: 26px; color: var(--navy); }
+
+.botao, .botao-sec {
+  display: inline-block; text-decoration: none; font-weight: 600; font-size: 15px;
+  padding: 9px 16px; border-radius: 8px;
+}
+.botao { background: var(--azul); color: #fff; }
+.botao:hover { background: #0000C8; }
+.botao-sec { color: var(--azul); border: 1px solid var(--azul); background: #fff; }
+.botao-sec:hover { background: #EEF0FF; }
+
+/* cartões da página inicial */
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.card {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio);
+  padding: 22px 24px; transition: border-color .15s, box-shadow .15s;
+}
+.card:hover { border-color: var(--azul); box-shadow: 0 6px 20px rgba(8, 9, 58, .08); }
+.card h2 { margin: 10px 0 6px; font-size: 22px; color: var(--navy); }
+.card p { margin: 0; color: var(--suave); }
+.tag {
+  display: inline-block; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 999px; background: var(--navy); color: #fff;
+}
+.tag-azul { background: var(--azul); }
+.tag-vermelho { background: var(--vermelho); }
+
+/* pedais */
+.moldura {
+  /* ocupa mais largura que o texto, para o modelo 3D ter espaço */
+  position: relative; left: 50%; transform: translateX(-50%);
+  width: min(calc(100vw - 48px), 1560px);
+  height: min(80vh, 820px); min-height: 540px;
+  background: #E7E9F1; border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden;
+}
+.moldura iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+.texto {
+  margin-top: 22px; background: var(--cartao); border: 1px solid var(--linha);
+  border-radius: var(--raio); padding: 22px 26px;
+}
+.texto ul { margin: 0; padding-left: 20px; }
+.texto li { margin: 0 0 10px; }
+.texto b { color: var(--navy); }
+.nota { margin: 14px 0 0; color: var(--suave); font-size: 14px; }
+
+/* apresentação */
+.visor { position: relative; background: #fff; border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; }
+.visor img { display: block; width: 100%; height: auto; }
+.seta {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px; border-radius: 50%; border: 0; cursor: pointer;
+  background: rgba(8, 9, 58, .78); color: #fff; font-size: 30px; line-height: 44px; padding: 0;
+}
+.seta:hover { background: var(--azul); }
+.seta:disabled { opacity: .3; cursor: default; }
+.seta-esq { left: 12px; }
+.seta-dir { right: 12px; }
+.contador { text-align: center; color: var(--suave); margin: 10px 0 14px; font-variant-numeric: tabular-nums; }
+.miniaturas { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 6px; }
+.miniaturas button {
+  flex: 0 0 auto; padding: 0; border: 2px solid transparent; border-radius: 6px;
+  background: none; cursor: pointer; line-height: 0;
+}
+.miniaturas img { width: 128px; height: 72px; border-radius: 4px; display: block; }
+.miniaturas button.ativo { border-color: var(--azul); }
+
+/* pdf */
+#pdf-area iframe {
+  width: 100%; height: min(82vh, 900px); min-height: 520px; border: 1px solid var(--linha);
+  border-radius: var(--raio); background: #fff; display: block;
+}
+.acoes-pdf { display: flex; gap: 8px; }
+.acoes-pdf[hidden] { display: none; }
+.vazio {
+  border: 2px dashed #B9BCD8; border-radius: var(--raio); background: #fff;
+  padding: 48px 24px; text-align: center; color: var(--suave);
+}
+.vazio h3 { margin: 0 0 8px; color: var(--navy); font-size: 20px; }
+.vazio p { margin: 0; }
+code { background: #EEF0F8; padding: 2px 6px; border-radius: 4px; font-size: 14px; }
+
+/* rodapé */
+.rodape { border-top: 1px solid var(--linha); background: #fff; }
+.rodape p { max-width: 1200px; margin: 0 auto; padding: 16px 24px; color: var(--suave); font-size: 14px; }
+
+/* celular */
+@media (max-width: 720px) {
+  .topo-in { padding: 14px 16px; gap: 14px; }
+  .marca img { height: 42px; }
+  .titulo h1 { font-size: 20px; }
+  .menu-in { padding: 8px 16px; display: grid; grid-template-columns: 1fr 1fr; }
+  .menu a { text-align: center; font-size: 14px; padding: 8px 10px; }
+  main { padding: 20px 16px 32px; }
+  .cards { grid-template-columns: 1fr; }
+  .cab h2 { font-size: 21px; }
+  .moldura { width: calc(100vw - 32px); height: 80vh; min-height: 480px; }
+  .texto { padding: 18px 18px; }
+  .seta { width: 38px; height: 38px; font-size: 24px; line-height: 36px; }
+}
